@@ -15,7 +15,7 @@ function CategoryList({data,actionOnRow,productDetails}) {
         <Text style = {styles.offerText}>{data.offer}</Text>
         </View>
         </TouchableWithoutFeedback>
-          <Button style={styles.cartButton} title="Add to Cart" onPress={() => actionOnRow(data.id)}></Button>   
+          <Button  style={styles.cartButton} title="Add to Cart" onPress={() => actionOnRow(data.id)}></Button>   
     </View>
    
    

@@ -58,7 +58,7 @@ class ProductDetails extends Component {
         <View style={{marginHorizontal:100,marginTop:20}}>
           
           <Button  title="Add To Cart" onPress={()=>{
-            this.props.navigation.navigate(navigationStrings.SHOP);
+            this.props.navigation.navigate(navigationStrings.SHOP,{itemsinfo:data.id});
 
          
            

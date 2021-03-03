@@ -6,7 +6,10 @@ import CartItem from '../Component/CartItem';
 
 
 class CartProduct extends Component {
-  state = {};
+
+  state = {
+  
+  };
 
 
 
@@ -21,8 +24,61 @@ class CartProduct extends Component {
     );
   }
 
+  productQuantityIncreament=(id)=>{
+    const {data} = this.props.route.params;
+    const{newQuantity}=this.state
+
+    
+     let newQuantityArray = [...data]
+
+     const quantityArrayIndex = newQuantityArray.findIndex((item)=>item.id === id)
+     let finalQuantityArray =  newQuantityArray[quantityArrayIndex]
+    
+     
+
+      finalQuantityArray.quantity+=1
+
+      this.setState({
+        data:finalQuantityArray
+      })
+    
+
+    
+    console.log(data)
+  }
+
+  productQuantityDecreament=(id)=>{
+    const {data} = this.props.route.params;
+    const{newQuantity}=this.state
+
+    
+    
+     let newQuantityArray = [...data]
+
+     const quantityArrayIndex = newQuantityArray.findIndex((item)=>item.id === id)
+     let finalQuantityArray =  newQuantityArray[quantityArrayIndex]
+
+     if(finalQuantityArray.quantity==1){
+       alert("at least one item will in cart")
+     }else{
+
+      finalQuantityArray.quantity-=1
+     }
+      this.setState({
+        data:finalQuantityArray
+      })
+    
+
+    
+    console.log(data)
+  }
+
   render() {
     const {data} = this.props.route.params;
+    const{newQuantity}=this.state;
+    
+     
+    
  
     return (
       <View style={{flex:1, backgroundColor:'#fff'}}>
@@ -30,7 +86,7 @@ class CartProduct extends Component {
             showsHorizontalScrollIndicator={false}
             data={data}
             ListEmptyComponent={this.ListEmptyView}
-            renderItem={({item}) => <CartItem data={item}/>}
+            renderItem={({item,index}) => <CartItem key={index} data={item} newQuantity={newQuantity} productQuantityDecreament={this.productQuantityDecreament} productQuantityIncreament={this.productQuantityIncreament}/>}
           />
            <View style={styles.buyNowButtonView}>
           <Button color={'#f74300'} title="Place Order"></Button>

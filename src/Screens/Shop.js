@@ -77,6 +77,7 @@ class Home extends Component {
           rating: 'Hurry,Only 1 left',
           price: '₹ 1000',
           offprice: '₹ 999',
+          quantity:1,
           image: imagePath.camera,
         },
         {
@@ -86,6 +87,7 @@ class Home extends Component {
           rating: 'Hurry,Only 1 left',
           price: '₹ 1130',
           offprice: '₹ 1500',
+          quantity:1,
           image: imagePath.earphones,
         },
         {
@@ -95,6 +97,7 @@ class Home extends Component {
           rating: 'Hurry,Only 1 left',
           price: '₹ 600',
           offprice: '₹ 799',
+          quantity:1,
           image: imagePath.earphones1,
         },
         {
@@ -104,6 +107,7 @@ class Home extends Component {
           rating: 'Hurry,Only 1 left',
           price: '₹ 120',
           offprice: '₹ 500',
+          quantity:1,
           image: imagePath.facewash,
         },
         {
@@ -113,6 +117,7 @@ class Home extends Component {
           rating: 'Hurry,Only 1 left',
           price: '₹ 100',
           offprice: '₹ 198',
+          quantity:1,
           image: imagePath.glasses,
         },
         {
@@ -122,6 +127,7 @@ class Home extends Component {
           rating: 'Hurry,Only 1 left',
           price: '₹ 1000',
           offprice: '₹ 999',
+          quantity:1,
           image: imagePath.headphone,
         },
         {
@@ -131,6 +137,7 @@ class Home extends Component {
           rating: 'Hurry,Only 1 left',
           price: '₹ 800',
           offprice: '₹ 999',
+          quantity:1,
           image: imagePath.men,
         },
         {
@@ -140,6 +147,7 @@ class Home extends Component {
           rating: 'Hurry,Only 1 left',
           price: '₹ 5000',
           offprice: '₹ 5999',
+          quantity:1,
           image: imagePath.men1,
         },
         {
@@ -149,6 +157,7 @@ class Home extends Component {
           rating: 'Hurry,Only 1 left',
           price: '₹ 500',
           offprice: '₹ 999',
+          quantity:1,
           image: imagePath.oil,
         },
         {
@@ -158,6 +167,7 @@ class Home extends Component {
           rating: 'Hurry,Only 1 left',
           price: '₹ 100',
           offprice: '₹ 199',
+          quantity:1,
           image: imagePath.phone,
         },
       ],
@@ -278,12 +288,30 @@ class Home extends Component {
     const {items, cartCount, data} = this.state;
 
     let newPostArry = [...items];
+   
 
-    data.push(newPostArry[id]);
+    if(!(data.includes(newPostArry[id]))){
+        data.push(newPostArry[id]);
 
+      
+      // var obj = {};
+      // obj['id'] = newPostArry[id].id;
+      // obj['name'] = newPostArry[id].name;
+      // obj['offer'] = newPostArry[id].offer;
+      // obj['rating'] = newPostArry[id].rating;
+      // obj['price'] = newPostArry[id].price;
+      // obj['offprice'] = newPostArry[id].offprice;
+      // obj['image'] = newPostArry[id].image;
+      // obj['quantity'] = 1;
+      // let quantityCartArray = [...data, obj];
+      // this.setState({data: quantityCartArray});
+     
     this.setState({
       cartCount: data.length,
     });
+  }else{
+    alert('item already in cart')
+  }
   };
   productDetails = (id) => {
     const {items} = this.state;
@@ -294,7 +322,24 @@ class Home extends Component {
     });
   };
 
-  // componentDidMount() {}
+  componentDidMount(){
+    this.focusListener = this.props.navigation.addListener('focus',()=>{
+      if(this.props.route.params){
+        let itemsadd=this.props.route.params.itemsinfo
+
+        // console.log(itemsadd)
+        this.actionOnRow(itemsadd)
+        this.props.route.params=null
+      }
+    })
+  }
+  componentWillUnmount(){
+    if(this.focusListener){
+      this.focusListener();
+    }
+  }
+
+
 
   render() {
     const {
