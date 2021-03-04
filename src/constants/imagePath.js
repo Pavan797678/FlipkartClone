@@ -48,6 +48,10 @@ export default {
 
     facebookLogin:require('../../assets/images/facebook_login.png'),
     twitterLogin:require('../../assets/images/twitter.png'),
+    profile:require('../../assets/images/user.png'),
+    cameraImage:require('../../assets/images/camera.png'),
+    gallery:require('../../assets/images/gallery.png'),
+    close:require('../../assets/images/close.png'),
     
     
 

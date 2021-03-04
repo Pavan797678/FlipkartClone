@@ -75,9 +75,9 @@ class Home extends Component {
           name: 'Camera',
           offer: '30-70% off',
           rating: 'Hurry,Only 1 left',
-          price: '₹ 1000',
+          price: 1000,
           offprice: '₹ 999',
-          quantity:1,
+          quantity: 1,
           image: imagePath.camera,
         },
         {
@@ -85,9 +85,9 @@ class Home extends Component {
           name: 'BoAt Earphone',
           offer: '30-70% off',
           rating: 'Hurry,Only 1 left',
-          price: '₹ 1130',
+          price: 1130,
           offprice: '₹ 1500',
-          quantity:1,
+          quantity: 1,
           image: imagePath.earphones,
         },
         {
@@ -95,9 +95,9 @@ class Home extends Component {
           name: 'Earphone',
           offer: '30-70% off',
           rating: 'Hurry,Only 1 left',
-          price: '₹ 600',
+          price: 600,
           offprice: '₹ 799',
-          quantity:1,
+          quantity: 1,
           image: imagePath.earphones1,
         },
         {
@@ -105,9 +105,9 @@ class Home extends Component {
           name: 'Facewash',
           offer: '30-70% off',
           rating: 'Hurry,Only 1 left',
-          price: '₹ 120',
+          price: 120,
           offprice: '₹ 500',
-          quantity:1,
+          quantity: 1,
           image: imagePath.facewash,
         },
         {
@@ -115,9 +115,9 @@ class Home extends Component {
           name: 'Glasses',
           offer: '30-70% off',
           rating: 'Hurry,Only 1 left',
-          price: '₹ 100',
+          price: 100,
           offprice: '₹ 198',
-          quantity:1,
+          quantity: 1,
           image: imagePath.glasses,
         },
         {
@@ -125,9 +125,9 @@ class Home extends Component {
           name: 'Headphone',
           offer: '30-70% off',
           rating: 'Hurry,Only 1 left',
-          price: '₹ 1000',
+          price: 1000,
           offprice: '₹ 999',
-          quantity:1,
+          quantity: 1,
           image: imagePath.headphone,
         },
         {
@@ -135,9 +135,9 @@ class Home extends Component {
           name: 'Shirt',
           offer: '30-70% off',
           rating: 'Hurry,Only 1 left',
-          price: '₹ 800',
+          price: 800,
           offprice: '₹ 999',
-          quantity:1,
+          quantity: 1,
           image: imagePath.men,
         },
         {
@@ -145,9 +145,9 @@ class Home extends Component {
           name: 'Shirt',
           offer: '30-70% off',
           rating: 'Hurry,Only 1 left',
-          price: '₹ 5000',
+          price: 5000,
           offprice: '₹ 5999',
-          quantity:1,
+          quantity: 1,
           image: imagePath.men1,
         },
         {
@@ -155,9 +155,9 @@ class Home extends Component {
           name: 'Oil',
           offer: '30-70% off',
           rating: 'Hurry,Only 1 left',
-          price: '₹ 500',
+          price: 500,
           offprice: '₹ 999',
-          quantity:1,
+          quantity: 1,
           image: imagePath.oil,
         },
         {
@@ -165,9 +165,9 @@ class Home extends Component {
           name: 'Phone',
           offer: '30-70% off',
           rating: 'Hurry,Only 1 left',
-          price: '₹ 100',
+          price: 100,
           offprice: '₹ 199',
-          quantity:1,
+          quantity: 1,
           image: imagePath.phone,
         },
       ],
@@ -288,12 +288,10 @@ class Home extends Component {
     const {items, cartCount, data} = this.state;
 
     let newPostArry = [...items];
-   
 
-    if(!(data.includes(newPostArry[id]))){
-        data.push(newPostArry[id]);
+    if (!data.includes(newPostArry[id])) {
+      data.push(newPostArry[id]);
 
-      
       // var obj = {};
       // obj['id'] = newPostArry[id].id;
       // obj['name'] = newPostArry[id].name;
@@ -305,13 +303,13 @@ class Home extends Component {
       // obj['quantity'] = 1;
       // let quantityCartArray = [...data, obj];
       // this.setState({data: quantityCartArray});
-     
-    this.setState({
-      cartCount: data.length,
-    });
-  }else{
-    alert('item already in cart')
-  }
+
+      this.setState({
+        cartCount: data.length,
+      });
+    } else {
+      alert('item already in cart');
+    }
   };
   productDetails = (id) => {
     const {items} = this.state;
@@ -322,24 +320,22 @@ class Home extends Component {
     });
   };
 
-  componentDidMount(){
-    this.focusListener = this.props.navigation.addListener('focus',()=>{
-      if(this.props.route.params){
-        let itemsadd=this.props.route.params.itemsinfo
+  componentDidMount() {
+    this.focusListener = this.props.navigation.addListener('focus', () => {
+      if (this.props.route.params) {
+        let itemsadd = this.props.route.params.itemsinfo;
 
         // console.log(itemsadd)
-        this.actionOnRow(itemsadd)
-        this.props.route.params=null
+        this.actionOnRow(itemsadd);
+        this.props.route.params = null;
       }
-    })
+    });
   }
-  componentWillUnmount(){
-    if(this.focusListener){
+  componentWillUnmount() {
+    if (this.focusListener) {
       this.focusListener();
     }
   }
-
-
 
   render() {
     const {
